@@ -3,7 +3,7 @@ import { GuildPluginData } from "vety";
 import { allowTimeout } from "../../../RegExpRunner.js";
 import { LogType } from "../../../data/LogType.js";
 import { TypedTemplateSafeValueContainer } from "../../../templateFormatter.js";
-import { MINUTES, inputPatternToRegExp, isDiscordAPIError } from "../../../utils.js";
+import { MINUTES, Snowflake as BrandedSnowflake, inputPatternToRegExp, isDiscordAPIError } from "../../../utils.js";
 import { MessageBuffer } from "../../../utils/MessageBuffer.js";
 import { InternalPosterPlugin } from "../../InternalPoster/InternalPosterPlugin.js";
 import { ILogTypeData, LogsPluginType, TLogChannel, TLogChannelMap } from "../types.js";
@@ -28,7 +28,7 @@ async function shouldExclude(
   opts: TLogChannel,
   exclusionData: ExclusionData,
 ): Promise<boolean> {
-  if (opts.excluded_users && exclusionData.userId && opts.excluded_users.includes(exclusionData.userId)) {
+  if (opts.excluded_users && exclusionData.userId && opts.excluded_users.includes(exclusionData.userId as BrandedSnowflake)) {
     return true;
   }
 
@@ -38,21 +38,21 @@ async function shouldExclude(
 
   if (opts.excluded_roles && exclusionData.roles) {
     for (const role of exclusionData.roles) {
-      if (opts.excluded_roles.includes(role)) {
+      if (opts.excluded_roles.includes(role as BrandedSnowflake)) {
         return true;
       }
     }
   }
 
-  if (opts.excluded_channels && exclusionData.channel && opts.excluded_channels.includes(exclusionData.channel)) {
+  if (opts.excluded_channels && exclusionData.channel && opts.excluded_channels.includes(exclusionData.channel as BrandedSnowflake)) {
     return true;
   }
 
-  if (opts.excluded_categories && exclusionData.category && opts.excluded_categories.includes(exclusionData.category)) {
+  if (opts.excluded_categories && exclusionData.category && opts.excluded_categories.includes(exclusionData.category as BrandedSnowflake)) {
     return true;
   }
 
-  if (opts.excluded_threads && exclusionData.thread && opts.excluded_threads.includes(exclusionData.thread)) {
+  if (opts.excluded_threads && exclusionData.thread && opts.excluded_threads.includes(exclusionData.thread as BrandedSnowflake)) {
     return true;
   }
 

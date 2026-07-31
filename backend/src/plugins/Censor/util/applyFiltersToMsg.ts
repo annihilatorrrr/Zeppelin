@@ -11,6 +11,7 @@ import {
   isGuildInvite,
   resolveInvite,
   resolveMember,
+  Snowflake,
 } from "../../../utils.js";
 import { CensorPluginType } from "../types.js";
 import { censorMessage } from "./censorMessage.js";
@@ -76,7 +77,7 @@ export async function applyFiltersToMsg(
       }
 
       if (isGuildInvite(invite)) {
-        if (inviteGuildWhitelist && !inviteGuildWhitelist.includes(invite.guild!.id)) {
+        if (inviteGuildWhitelist && !inviteGuildWhitelist.includes(invite.guild!.id as Snowflake)) {
           censorMessage(
             pluginData,
             savedMessage,
@@ -85,7 +86,7 @@ export async function applyFiltersToMsg(
           return true;
         }
 
-        if (inviteGuildBlacklist && inviteGuildBlacklist.includes(invite.guild!.id)) {
+        if (inviteGuildBlacklist && inviteGuildBlacklist.includes(invite.guild!.id as Snowflake)) {
           censorMessage(
             pluginData,
             savedMessage,
