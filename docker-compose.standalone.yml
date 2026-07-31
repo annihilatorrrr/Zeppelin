@@ -1,8 +1,9 @@
-version: '3'
 name: zeppelin-prod
+
 volumes:
   mysql-data: {}
   redis-data: {}
+
 services:
   mysql:
     image: mysql:8.0
@@ -53,8 +54,7 @@ services:
       - API_PATH_PREFIX=/api
     env_file:
       - .env
-    working_dir: /zeppelin/backend
-    command: ["npm", "run", "migrate-prod"]
+    command: ["migrate"]
 
   api:
     image: dragory/zeppelin
@@ -65,8 +65,7 @@ services:
     environment: *env
     env_file:
       - .env
-    working_dir: /zeppelin/backend
-    command: ["npm", "run", "start-api-prod"]
+    command: ["api"]
 
   bot:
     image: dragory/zeppelin
@@ -77,8 +76,7 @@ services:
     environment: *env
     env_file:
       - .env
-    working_dir: /zeppelin/backend
-    command: ["npm", "run", "start-bot-prod"]
+    command: ["bot"]
   
   dashboard:
     image: dragory/zeppelin
@@ -89,5 +87,4 @@ services:
     environment: *env
     env_file:
       - .env
-    working_dir: /zeppelin/dashboard
-    command: ["node", "serve.js"]
+    command: ["dashboard"]

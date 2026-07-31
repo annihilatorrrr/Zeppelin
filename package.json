@@ -10,9 +10,10 @@
     "format": "oxfmt",
     "lint": "oxlint --check",
     "lint:fix": "oxfmt",
-    "start-bot": "cd backend && pnpm run start-bot-prod",
-    "start-api": "cd backend && pnpm run start-api-prod",
-    "start-dashboard": "cd dashboard && node serve.js"
+    "run:migrate": "cd backend && pnpm run migrate",
+    "run:bot": "cd backend && pnpm run start-bot-prod",
+    "run:api": "cd backend && pnpm run start-api-prod",
+    "run:dashboard": "cd dashboard && node serve.js"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",

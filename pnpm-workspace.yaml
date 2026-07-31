@@ -1,4 +1,5 @@
 storeDir: .pnpm-store
+verifyDepsBeforeRun: false
 
 packages:
   - 'backend'

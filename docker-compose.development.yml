@@ -1,8 +1,10 @@
 name: zeppelin-dev
+
 volumes:
   home: {}
   mysql-data: {}
   redis-data: {}
+
 services:
   nginx:
     build:
