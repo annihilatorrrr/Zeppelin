@@ -13,18 +13,14 @@ minimumReleaseAge: 20160 # in minutes (2 weeks)
 minimumReleaseAgeExclude:
   - 'vety'
   - 'knub-command-manager'
-  - '@typescript-native-bridge/darwin-arm64@6.0.3-bridge.7.tsgo.7.0.2'
-  - '@typescript-native-bridge/darwin-x64@6.0.3-bridge.7.tsgo.7.0.2'
-  - '@typescript-native-bridge/linux-arm64@6.0.3-bridge.7.tsgo.7.0.2'
-  - '@typescript-native-bridge/linux-arm@6.0.3-bridge.7.tsgo.7.0.2'
-  - '@typescript-native-bridge/linux-x64@6.0.3-bridge.7.tsgo.7.0.2'
-  - '@typescript-native-bridge/win32-arm64@6.0.3-bridge.7.tsgo.7.0.2'
-  - '@typescript-native-bridge/win32-x64@6.0.3-bridge.7.tsgo.7.0.2'
-  - typescript-native-bridge@6.0.3-bridge.7.tsgo.7.0.2
 
 overrides:
   # Keep in sync with Vety's discord.js version
   discord.js: "14.23.2"
   discord-api-types: "0.38.30"
-  # https://github.com/johnsoncodehk/typescript-native-bridge
-  typescript: npm:typescript-native-bridge@6.0.3-bridge.7.tsgo.7.0.2
+
+catalogs:
+  ts6:
+    typescript: 6.0.3
+  ts7:
+    typescript: 7.0.2

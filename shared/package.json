@@ -5,24 +5,22 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./*": "./dist/*"
+    "./*.js": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
   },
   "scripts": {
-    "test": "ava"
+    "build": "tsc -p tsconfig.json",
+    "test": "pnpm run build && ava"
   },
   "devDependencies": {
     "ava": "^5.3.1",
-    "ts-node": "^10.9.1"
+    "typescript": "catalog:ts7"
   },
   "ava": {
     "files": [
-      "src/**/*.test.ts"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
+      "dist/**/*.test.js"
     ]
   }
 }
