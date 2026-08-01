@@ -29,17 +29,17 @@ export const GuildInfoSaverPlugin = guildPlugin<GuildInfoSaverPluginType>()({
   },
 });
 
-async function updateGuildInfo(guild: Guild) {
+export async function updateGuildInfo(guild: Guild, forceOwnerUpdate = false) {
   if (!guild.name) {
     return;
   }
 
   const allowedGuilds = new AllowedGuilds();
   const existingData = (await allowedGuilds.find(guild.id))!;
-  allowedGuilds.updateInfo(guild.id, guild.name, guild.iconURL(), guild.ownerId);
+  await allowedGuilds.updateInfo(guild.id, guild.name, guild.iconURL(), guild.ownerId);
 
-  if (existingData.owner_id !== guild.ownerId || existingData.created_at === existingData.updated_at) {
+  if (existingData.owner_id !== guild.ownerId || existingData.created_at === existingData.updated_at || forceOwnerUpdate) {
     const apiPermissions = new ApiPermissionAssignments();
-    apiPermissions.applyOwnerChange(guild.id, guild.ownerId);
+    await apiPermissions.applyOwnerChange(guild.id, guild.ownerId);
   }
 }
