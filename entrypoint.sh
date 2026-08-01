@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export NODE_ENV=production
+
 case "$1" in
     migrate) exec pnpm run --silent run:migrate;;
     bot) exec pnpm run --silent run:bot;;
