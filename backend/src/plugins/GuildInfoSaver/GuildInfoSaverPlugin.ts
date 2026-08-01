@@ -38,7 +38,7 @@ async function updateGuildInfo(guild: Guild) {
   const existingData = (await allowedGuilds.find(guild.id))!;
   allowedGuilds.updateInfo(guild.id, guild.name, guild.iconURL(), guild.ownerId);
 
-  if (existingData.owner_id !== guild.ownerId) {
+  if (existingData.owner_id !== guild.ownerId || existingData.created_at === existingData.updated_at) {
     const apiPermissions = new ApiPermissionAssignments();
     apiPermissions.applyOwnerChange(guild.id, guild.ownerId);
   }
