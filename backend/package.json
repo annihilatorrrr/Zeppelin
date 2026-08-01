@@ -4,20 +4,16 @@
   "description": "",
   "private": true,
   "type": "module",
-  "exports": {
-    "./*": "./dist/*"
-  },
   "scripts": {
-    "watch": "tsc-watch --build --onSuccess \"node start-dev.js\"",
-    "watch-yaml-parse-test": "tsc-watch --build --onSuccess \"node dist/yamlParseTest.js\"",
-    "build": "tsc --build",
-    "typecheck": "tsc --noEmit",
+    "watch": "echo 'watch machine broke, have a nice day' && exit 1",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit --incremental false",
     "start-bot-dev": "node --enable-source-maps --stack-trace-limit=30 --trace-warnings --inspect=0.0.0.0:9229 dist/index.js",
     "start-bot-prod": "node --enable-source-maps --stack-trace-limit=30 --trace-warnings dist/index.js",
-    "watch-bot": "tsc-watch --build --onSuccess \"pnpm run start-bot-dev\"",
+    "watch-bot": "echo 'watch machine broke, have a nice day' && exit 1",
     "start-api-dev": "node --enable-source-maps --stack-trace-limit=30 --inspect=0.0.0.0:9239 dist/api/index.js",
     "start-api-prod": "node --enable-source-maps --stack-trace-limit=30 dist/api/index.js",
-    "watch-api": "tsc-watch --build --onSuccess \"pnpm run start-api-dev\"",
+    "watch-api": "echo 'watch machine broke, have a nice day' && exit 1",
     "migrate": "pnpm exec typeorm migration:run -d dist/data/dataSource.js",
     "migrate-prod": "pnpm run migrate",
     "migrate-dev": "pnpm run build && pnpm run migrate",
@@ -27,8 +23,7 @@
     "validate-active-configs": "node --enable-source-maps dist/validateActiveConfigs.js > ../config-errors.txt",
     "export-config-json-schema": "node --enable-source-maps dist/exportSchemas.js ../config-checker/public/config-schema.json",
     "test": "pnpm run build && pnpm run run-tests",
-    "run-tests": "ava",
-    "test-watch": "tsc-watch --build --onSuccess \"pnpm exec ava\""
+    "run-tests": "ava"
   },
   "dependencies": {
     "@silvia-odwyer/photon-node": "^0.3.1",
@@ -38,6 +33,7 @@
     "cross-env": "^7.0.3",
     "deep-diff": "^1.0.2",
     "discord.js": "*",
+    "dotenv": "^17.4.2",
     "emoji-regex": "^8.0.0",
     "escape-string-regexp": "^1.0.5",
     "express": "^4.20.0",
@@ -85,14 +81,13 @@
     "@types/twemoji": "^12.1.0",
     "@types/uuid": "^9.0.2",
     "ava": "^5.3.1",
-    "source-map-support": "^0.5.16"
+    "source-map-support": "^0.5.16",
+    "ts-toolbelt": "^9.6.0",
+    "typescript": "catalog:ts7"
   },
   "ava": {
     "files": [
       "dist/**/*.test.js"
-    ],
-    "require": [
-      "./register-tsconfig-paths.js"
     ]
   }
 }

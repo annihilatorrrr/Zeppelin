@@ -3,15 +3,9 @@
   "compilerOptions": {
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "baseUrl": "./src",
     "rootDir": "./src",
     "outDir": "./dist",
-    "composite": true
+    "incremental": true
   },
-  "include": ["src/**/*.ts", "src/**/*.json"],
-  "references": [
-    {
-      "path": "../shared/tsconfig.json"
-    }
-  ]
+  "include": ["src/**/*.ts", "src/**/*.json"]
 }

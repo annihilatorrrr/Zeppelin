@@ -22,12 +22,11 @@
 # dotenv environment variables file
 **/*.env
 **/.env
+**/.env.*
+!**/.env.example
 
 # windows folder options
 **/desktop.ini
-
-# PHPStorm
-**/.idea
 
 # Misc
 **/npm-ls.txt
@@ -45,3 +44,10 @@ config-errors.txt
 /config-schema.json
 
 **/*.tsbuildinfo
+
+**/.claude
+**/.codex
+**/.opencode
+
+/config-checker
+/presetup-configurator

@@ -1,12 +1,9 @@
-version: '3'
 name: zeppelin-lightweight
+
 services:
   migrate:
     build: &build
       context: .
-      args:
-        # Used at compile-time by dashboard
-        API_URL:
     environment: &env
       - NODE_ENV=production
       - DB_HOST=${LIGHTWEIGHT_DB_HOST}
@@ -17,8 +14,7 @@ services:
       - API_PATH_PREFIX=${LIGHTWEIGHT_API_PATH_PREFIX}
     env_file:
       - .env
-    working_dir: /zeppelin/backend
-    command: ["npm", "run", "migrate-prod"]
+    command: ["migrate"]
 
   api:
     depends_on:
@@ -31,8 +27,7 @@ services:
       - .env
     ports:
       - "${LIGHTWEIGHT_API_PORT}:3001"
-    working_dir: /zeppelin/backend
-    command: ["npm", "run", "start-api-prod"]
+    command: ["api"]
 
   bot:
     depends_on:
@@ -43,13 +38,9 @@ services:
     environment: *env
     env_file:
       - .env
-    working_dir: /zeppelin/backend
-    command: ["npm", "run", "start-bot-prod"]
+    command: ["bot"]
   
   dashboard:
-    depends_on:
-      migrate:
-        condition: service_completed_successfully
     build: *build
     restart: on-failure
     environment: *env
@@ -57,5 +48,4 @@ services:
       - .env
     ports:
       - "${LIGHTWEIGHT_DASHBOARD_PORT}:3002"
-    working_dir: /zeppelin/dashboard
-    command: ["node", "serve.js"]
+    command: ["dashboard"]

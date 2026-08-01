@@ -1,7 +1,14 @@
+storeDir: .pnpm-store
+verifyDepsBeforeRun: false
+
 packages:
   - 'backend'
   - 'shared'
   - 'dashboard'
+
+allowBuilds:
+  bufferutil: true
+  utf-8-validate: true
 
 minimumReleaseAge: 20160 # in minutes (2 weeks)
 minimumReleaseAgeExclude:
@@ -12,3 +19,9 @@ overrides:
   # Keep in sync with Vety's discord.js version
   discord.js: "14.23.2"
   discord-api-types: "0.38.30"
+
+catalogs:
+  ts6:
+    typescript: 6.0.3
+  ts7:
+    typescript: 7.0.2
